@@ -1,6 +1,8 @@
 package hello_world
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestHello(t *testing.T) {
 	checkCorrectMessage := func(t *testing.T, result, expected string) {
@@ -11,14 +13,26 @@ func TestHello(t *testing.T) {
 	}
 
 	t.Run("diz olá para as pessoas", func(t *testing.T) {
-		result := Hello("Paul")
+		result := Hello("Paul", "")
 		expected := "Hello, Paul"
 		checkCorrectMessage(t, result, expected)
 	})
 
 	t.Run("diz 'Olá, mundo' quando uma string vazia por passada", func(t *testing.T) {
-		result := Hello("")
+		result := Hello("", "")
 		expected := "Hello, world"
+		checkCorrectMessage(t, result, expected)
+	})
+
+	t.Run("em espanhol", func(t *testing.T) {
+		result := Hello("Paul", "espanhol")
+		expected := "Hola, Paul"
+		checkCorrectMessage(t, result, expected)
+	})
+
+	t.Run("em francês", func(t *testing.T) {
+		result := Hello("Paul", "frances")
+		expected := "Bonjour, Paul"
 		checkCorrectMessage(t, result, expected)
 	})
 }
